@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <title>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ - Tantana</title>
+    <link rel="stylesheet" href="../fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-image: url('../soon.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(2, 2, 2, 0.2) 0%, rgba(2, 2, 2, 0.9) 100%);
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 200px;
+            height: 45px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
+        .title {
+            color: #fff;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .last-updated {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(54px);
+            -webkit-backdrop-filter: blur(54px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-content {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.7;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            color: #f45914;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: #f45914;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #fff;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .section-content {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 475px) {
+            .header {
+                margin-bottom: 20px;
+            }   
+            .title {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            .section-content {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="header">
+            <img src="../logo.svg" alt="Tantana Logo" class="logo">
+            <h1 class="title">Политика конфиденциальности</h1>
+            <p class="last-updated">Последнее обновление: 2 сентября 2025 года</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">1. Общие положения</h2>
+                <div class="section-content">
+                    <p><strong>1.1.</strong> Настоящая Политика конфиденциальности (далее – «Политика») определяет порядок сбора, хранения, обработки, использования и передачи персональных данных пользователей мобильного приложения TANTANA (далее – «Приложение»), а также меры по их защите. Политика разработана в соответствии с Законом Республики Узбекистан «О персональных данных», а также иными применимыми нормативно-правовыми актами.</p>
+                    <p><strong>1.2.</strong> Использование Приложения означает безоговорочное согласие пользователя с условиями настоящей Политики. В случае несогласия пользователь должен воздержаться от использования Приложения.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">2. Обрабатываемые персональные данные</h2>
+                <div class="section-content">
+                    <p><strong>2.1.</strong> Общество собирает и обрабатывает персональные данные пользователей, которые предоставляются при регистрации и использовании Приложения, а также получаются автоматически или от партнёров.</p>
+                    
+                    <p><strong>2.2.</strong> Идентификационные данные включают в себя имя и фамилию пользователя, его дату рождения или возраст, указание пола, а также изображение профиля в виде фотографии или аватара.</p>
+                    
+                    <p><strong>2.3.</strong> Контактные данные могут содержать номер телефона, адрес электронной почты, почтовый адрес, а также данные учетных записей в социальных сетях, через которые осуществляется вход в Приложение.</p>
+                    
+                    <p><strong>2.4.</strong> Информация аккаунта охватывает логин, зашифрованный пароль, пользовательские настройки, а также индивидуальные предпочтения, связанные с любимыми кухнями, заведениями, способами оплаты и иными аспектами взаимодействия с Приложением.</p>
+                    
+                    <p><strong>2.5.</strong> Данные о бронированиях и посещениях фиксируют историю бронирований, отмен, неявок, даты и время визитов, количество гостей, специальные запросы (включая информацию об аллергиях, предпочтениях по размещению), частоту посещений и любимые места пользователя.</p>
+                    
+                    <p><strong>2.6.</strong> Платёжная информация включает сведения о совершённых оплатах, возвратах, использованных скидках, промокодах и акциях. Данные банковских карт обрабатываются исключительно через платёжных провайдеров и не хранятся на серверах Общества.</p>
+                    
+                    <p><strong>2.7.</strong> Технические данные и информация об устройствах охватывают IP-адрес пользователя, тип устройства, операционную систему, версию браузера, уникальные идентификаторы устройств, а также cookie-файлы и другие технологии отслеживания. Также анализируется поведение в Приложении - продолжительность сессий, посещённые экраны, источники перехода.</p>
+                    
+                    <p><strong>2.8.</strong> Геолокационная информация может включать город и страну, определяемые по IP-адресу, а также точные координаты местоположения, если пользователь явно разрешил их использование.</p>
+                    
+                    <p><strong>2.9.</strong> Данные, получаемые от партнёров, могут содержать информацию от ресторанов о факте визита, заказанных блюдах и чеке, сведения от платёжных систем о статусах транзакций, а также информацию от маркетинговых партнёров и социальных сетей, участвующих в интеграциях.</p>
+                    
+                    <p><strong>2.10.</strong> Коммуникационные данные охватывают переписку с техподдержкой, оставленные отзывы и комментарии, загружаемые пользователем фотографии и другой контент, а также участие в конкурсах, розыгрышах, опросах и иных активностях Приложения.</p>
+                    
+                    <p><strong>2.11.</strong> Автоматически выводимая информация включает в себя построение профиля активности пользователя, например, отнесение к категории «частый гость» или «новый пользователь», формирование персонализированных рекомендаций, предложений и контента на основе истории взаимодействия с Приложением.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">3. Цели обработки персональных данных</h2>
+                <div class="section-content">
+                    <p><strong>3.1.</strong> Персональные данные обрабатываются Обществом для обеспечения функционирования Приложения, управления пользовательскими аккаунтами, предоставления услуг бронирования и заказов, настройки персонализированного интерфейса и предложений, а также в целях аналитики, маркетинга, выполнения требований законодательства и защиты законных интересов.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">4. Хранение и защита данных</h2>
+                <div class="section-content">
+                    <p>Все персональные данные хранятся на серверах с ограниченным доступом и защищены техническими и организационными мерами, соответствующими актуальным требованиям информационной безопасности. Срок хранения зависит от целей обработки, но не превышает период, необходимый для достижения этих целей, за исключением случаев, предусмотренных законодательством.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">5. Права пользователя</h2>
+                <div class="section-content">
+                    <p><strong>5.1.</strong> Пользователь имеет право на:</p>
+                    <ul>
+                        <li>получение информации об обработке персональных данных;</li>
+                        <li>доступ к своим персональным данным;</li>
+                        <li>исправление, обновление и удаление данных;</li>
+                        <li>отзыв согласия на обработку данных в любой момент;</li>
+                        <li>ограничение или запрещение обработки (в случаях, предусмотренных законом);</li>
+                        <li>обращение в уполномоченный орган по защите персональных данных для защиты своих прав.</li>
+                    </ul>
+                    <p>Для реализации указанных прав пользователь может направить запрос по адресу, указанному ниже.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">6. Обновления Политики</h2>
+                <div class="section-content">
+                    <p>Общество вправе вносить изменения в настоящую Политику. Новая редакция вступает в силу с момента публикации в Приложении или на соответствующих информационных ресурсах по ссылке: <a href="https://tantana.group/privacy-policy/" style="color: #f45914;">https://tantana.group/privacy-policy/</a></p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">7. Контактная информация</h2>
+                <div class="section-content">
+                    <div class="contact-info">
+                        <p><strong>ООО «TANTANA ENTERTAINMENT»</strong></p>
+                        <p><strong>Адрес:</strong> Toshkent shahri, Mirzo Ulug'bek tumani Elobod MFY, Chust ko`chasi, 1-uy</p>
+                        <p><strong>Телефон:</strong> <a href="tel:+998935564935">+998 93 556 49 35</a></p>
+                        <p><strong>Электронная почта:</strong> <a href="mailto:rasulov@gmail.com">rasulov@gmail.com</a></p>
+                    </div>
+                    <p style="margin-top: 20px; font-style: italic;">Настоящая Политика утверждена Обществом и действует бессрочно до замены новой версией. Действующая редакция Политики датирована «2» сентября 2025 года.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
