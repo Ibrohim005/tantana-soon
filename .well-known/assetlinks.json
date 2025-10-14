@@ -1,12 +1,12 @@
 [
   {
-    relation: [
+    "relation": [
       "delegate_permission/common.handle_all_urls"
     ],
-    target: {
-      namespace: "android_app",
-      package_name: "com.tantana.visits",
-      sha256_cert_fingerprints: [
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tantana.visits",
+      "sha256_cert_fingerprints": [
         "85:E9:24:BE:8A:1D:8A:F0:7E:7C:25:56:2D:40:28:61:10:ED:13:B7:4A:53:6F:FA:84:22:5C:26:BB:BB:F4:8E"
       ]
     }
