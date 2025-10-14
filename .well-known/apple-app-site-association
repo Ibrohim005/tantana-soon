@@ -1,6 +1,6 @@
 {
   "applinks": {
-    "apps": [ ],
+    "apps": [],
     "details": [
       {
         "appIDs": [
@@ -11,7 +11,7 @@
         ],
         "components": [
           {
-            /: "/*"
+            "/": "/*"
           }
         ]
       }
