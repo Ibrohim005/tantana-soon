@@ -1,15 +1,15 @@
 {
-  applinks: {
-    apps: [ ],
-    details: [
+  "applinks": {
+    "apps": [ ],
+    "details": [
       {
-        appIDs: [
+        "appIDs": [
           "N553U472RM.com.tantana.visits"
         ],
-        paths: [
+        "paths": [
           "*"
         ],
-        components: [
+        "components": [
           {
             /: "/*"
           }
@@ -17,8 +17,8 @@
       }
     ]
   },
-  webcredentials: {
-    apps: [
+  "webcredentials": {
+    "apps": [
       "N553U472RM.com.tantana.visits"
     ]
   }
