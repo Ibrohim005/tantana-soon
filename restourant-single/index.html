@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <title>Ресторан - Tantana</title>
+    <link rel="stylesheet" href="../fonts.css">
+    <style>
+        :root {
+            --black: #020202;
+            --gray-2: #676767;
+            --gray-6: #f0f2f5;
+            --white: #ffffff;
+            --orange: #f75908;
+            --green: #34c759;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            background: var(--gray-6);
+        }
+
+        .phone {
+            background: var(--gray-6);
+            position: relative;
+            width: 100%;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(9px);
+            box-shadow: 0 10px 30px rgba(2, 2, 2, 0.1);
+            padding: 16px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            width: 147px;
+            height: 32px;
+        }
+
+        .download-btn {
+            padding: 13px 26px;
+            border-radius: 100px;
+            background: linear-gradient(143.58deg, #FF6617 19.34%, #CC2807 108.63%);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 10px;
+            text-align: center;
+            width: 110px;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            overflow: hidden;
+            margin-top: -5px;
+            padding-bottom: 12px;
+        }
+
+        .hero-cover {
+            height: 212px;
+            background: url("http://localhost:3845/assets/77f6cf8f3e8d0b6492d24f2606059592b433d2b3.png") center/cover no-repeat;
+        }
+
+        .hero-content {
+            padding: 0 16px;
+            margin-top: -32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .venue-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .venue-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--gray-6);
+            border: 1px solid var(--gray-6);
+            box-shadow: 2px 30px 8px rgba(2, 2, 2, 0), 1px 19px 8px rgba(2, 2, 2, 0.01),
+                1px 11px 6px rgba(2, 2, 2, 0.03), 0 5px 5px rgba(2, 2, 2, 0.06),
+                0 1px 3px rgba(2, 2, 2, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .venue-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .venue-name {
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 1.3;
+            color: var(--black);
+        }
+        .venue-info-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .venue-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-2);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .venue-divider {
+            width: 4px;
+            height: 4px;
+            border-radius: 20px;
+            background: var(--gray-2);
+            opacity: 0.3;
+        }
+
+        .collage-row {
+            height: 166px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+        .collage-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .collage-big {
+            width: 222px;
+            height: 166px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--white);
+            flex-shrink: 0;
+        }
+
+        .collage-big img,
+        .collage-square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .collage-column {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 79px;
+        }
+
+        .collage-square {
+            width: 79px;
+            height: 79px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .collage-square.full {
+            width: 166px;
+            height: 166px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .tab {
+            background: transparent;
+            border: 0;
+            padding: 0 12px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--gray-2);
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            height: 20px;
+        }
+
+        .tab.active {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .tab::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12px;
+            height: 3px;
+            border-radius: 10px 10px 0 0;
+            background: var(--orange);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .tab.active::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tab .counter {
+            padding: 4px 5px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 9px;
+            background: var(--gray-6);
+            color: var(--gray-2);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .tab.active .counter {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .panel-content {
+            padding: 16px;
+        }
+
+        .panel-title {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .panel-text {
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--gray-2);
+        }
+
+        .review-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(136, 152, 170, 0.08);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--black);
+        }
+
+        .review-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .branches {
+            padding: 12px 16px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .branch-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(136, 152, 170, 0.08);
+        }
+
+        .branch-main {
+            position: relative;
+            height: 114px;
+            overflow: hidden;
+        }
+
+        .branch-main img.bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .branch-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2, 2, 2, 0.3) 0%, rgba(2, 2, 2, 0.8) 100%);
+        }
+
+        .branch-logo {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gray-6);
+            border: 1px solid var(--gray-6);
+            overflow: hidden;
+        }
+
+        .branch-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .branch-title {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--white);
+        }
+
+        .branch-fav {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 80px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 2, 2, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .branch-rating {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 2px 6px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .branch-location {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--black);
+        }
+
+        .branch-location img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <div class="nav">
+            <div class="nav-content">
+                <img class="brand-logo" src="http://localhost:3845/assets/510a96abfecc45d32db48b50099debc25d922eed.svg" alt="Tantana">
+                <div class="download-btn">Скачать</div>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="hero-cover"></div>
+            <div class="hero-content">
+                <div class="venue-info">
+                    <div class="venue-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="venue-info-text">
+                        <div class="venue-name">Bon!</div>
+                        <div class="venue-meta">
+                            <span>Cafe</span>
+                            <span class="venue-divider"></span>
+                            <span>French</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collage-row">
+                    <div class="collage-big">
+                        <img src="http://localhost:3845/assets/949a80cbb7b678443fc8e4abc338285c1714afb8.png" alt="">
+                    </div>
+                    <div class="collage-column">
+                        <div class="collage-square">
+                            <img src="http://localhost:3845/assets/430a0105abe639d16346ef9ec599911840350688.png" alt="">
+                        </div>
+                        <div class="collage-square">
+                            <img src="http://localhost:3845/assets/7442fe4712faa7fa65e568ce9ae9d521080f1080.png" alt="">
+                        </div>
+                    </div>
+                    <div class="collage-big">
+                        <img src="http://localhost:3845/assets/949a80cbb7b678443fc8e4abc338285c1714afb8.png" alt="">
+                    </div>
+                    <div class="collage-column">
+                        <div class="collage-square">
+                            <img src="http://localhost:3845/assets/430a0105abe639d16346ef9ec599911840350688.png" alt="">
+                        </div>
+                        <div class="collage-square">
+                            <img src="http://localhost:3845/assets/7442fe4712faa7fa65e568ce9ae9d521080f1080.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab" type="button" data-tab="about">О заведении</button>
+                    <button class="tab" type="button" data-tab="reviews">
+                        Отзывы
+                        <span class="counter">2</span>
+                    </button>
+                    <button class="tab active" type="button" data-tab="branches">
+                        Филалы
+                        <span class="counter">23</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-panel" data-panel="about">
+            <div class="panel-content">
+                <div class="panel-title">О заведении</div>
+                <div class="panel-text">
+                    Bon! — уютное кафе с французской кухней. Здесь можно позавтракать, пообедать
+                    или просто провести время за десертами и свежей выпечкой.
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-panel" data-panel="reviews">
+            <div class="panel-content" style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span>Алина</span>
+                        <span class="review-rating">5.0</span>
+                    </div>
+                    <div class="panel-text">Отличный кофе и атмосфера. Обязательно вернусь!</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span>Игорь</span>
+                        <span class="review-rating">4.8</span>
+                    </div>
+                    <div class="panel-text">Супер десерты и очень вежливый персонал.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-panel active" data-panel="branches">
+            <div class="branches">
+            <div class="branch-card">
+                <div class="branch-main">
+                    <img class="bg" src="http://localhost:3845/assets/ab7e1f6d2dfe20c45ad8059cb0c04fe9ed08bc96.png" alt="">
+                    <div class="branch-overlay"></div>
+                    <div class="branch-fav">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-rating">
+                        4.9
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.51339 2.94044C7.66774 2.59419 7.74491 2.42106 7.85236 2.36774C7.94571 2.32143 8.05534 2.32143 8.14868 2.36774C8.25614 2.42106 8.33331 2.59419 8.48765 2.94044L9.71701 5.6984C9.76264 5.80076 9.78545 5.85194 9.82076 5.89113C9.85199 5.92581 9.89016 5.95354 9.9328 5.97254C9.98099 5.994 10.0367 5.99988 10.1482 6.01164L13.151 6.32858C13.528 6.36837 13.7165 6.38826 13.8004 6.47399C13.8733 6.54845 13.9072 6.65271 13.892 6.7558C13.8745 6.87448 13.7337 7.00137 13.4521 7.25516L11.209 9.2766C11.1258 9.35162 11.0841 9.38914 11.0578 9.43482C11.0344 9.47525 11.0199 9.52012 11.015 9.56654C11.0094 9.619 11.0211 9.67382 11.0443 9.78345L11.6708 12.7373C11.7495 13.1081 11.7888 13.2935 11.7332 13.3998C11.6849 13.4922 11.5962 13.5566 11.4935 13.574C11.3752 13.594 11.211 13.4993 10.8826 13.3099L8.26699 11.8013C8.16991 11.7453 8.12137 11.7173 8.06977 11.7064C8.02411 11.6967 7.97693 11.6967 7.93128 11.7064C7.87968 11.7173 7.83114 11.7453 7.73406 11.8013L5.1184 13.3099C4.79001 13.4993 4.62582 13.594 4.50755 13.574C4.40481 13.5566 4.31611 13.4922 4.26782 13.3998C4.21222 13.2935 4.25155 13.1081 4.33021 12.7373L4.95672 9.78345C4.97997 9.67382 4.9916 9.619 4.98608 9.56654C4.98119 9.52012 4.96661 9.47525 4.94328 9.43482C4.91691 9.38914 4.87529 9.35162 4.79204 9.2766L2.54896 7.25515C2.26735 7.00137 2.12654 6.87448 2.10904 6.7558C2.09384 6.65271 2.12771 6.54845 2.20061 6.47399C2.28452 6.38826 2.47302 6.36837 2.85002 6.32858L5.85288 6.01164C5.96433 5.99988 6.02006 5.994 6.06825 5.97254C6.11088 5.95354 6.14905 5.92581 6.18029 5.89113C6.21559 5.85194 6.23841 5.80076 6.28403 5.6984L7.51339 2.94044Z" fill="#34C759"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="branch-title">Bon</div>
+                </div>
+                <div class="branch-location">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99935 17.5C12.916 14.5 15.8327 11.8137 15.8327 8.5C15.8327 5.18629 13.221 2.5 9.99935 2.5C6.77769 2.5 4.16602 5.18629 4.16602 8.5C4.16602 11.8137 7.08268 14.5 9.99935 17.5Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.99935 10.8333C11.3801 10.8333 12.4993 9.71404 12.4993 8.33333C12.4993 6.95262 11.3801 5.83333 9.99935 5.83333C8.61864 5.83333 7.49935 6.95262 7.49935 8.33333C7.49935 9.71404 8.61864 10.8333 9.99935 10.8333Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    Amir Temur, Tashkent, Uzbekistan
+                </div>
+            </div>
+
+            <div class="branch-card">
+                <div class="branch-main">
+                    <img class="bg" src="http://localhost:3845/assets/10c27943e916568fddf8abdef7b88bdcb5296b0b.png" alt="">
+                    <div class="branch-overlay"></div>
+                    <div class="branch-fav">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-rating">
+                        5.0
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.51339 2.94044C7.66774 2.59419 7.74491 2.42106 7.85236 2.36774C7.94571 2.32143 8.05534 2.32143 8.14868 2.36774C8.25614 2.42106 8.33331 2.59419 8.48765 2.94044L9.71701 5.6984C9.76264 5.80076 9.78545 5.85194 9.82076 5.89113C9.85199 5.92581 9.89016 5.95354 9.9328 5.97254C9.98099 5.994 10.0367 5.99988 10.1482 6.01164L13.151 6.32858C13.528 6.36837 13.7165 6.38826 13.8004 6.47399C13.8733 6.54845 13.9072 6.65271 13.892 6.7558C13.8745 6.87448 13.7337 7.00137 13.4521 7.25516L11.209 9.2766C11.1258 9.35162 11.0841 9.38914 11.0578 9.43482C11.0344 9.47525 11.0199 9.52012 11.015 9.56654C11.0094 9.619 11.0211 9.67382 11.0443 9.78345L11.6708 12.7373C11.7495 13.1081 11.7888 13.2935 11.7332 13.3998C11.6849 13.4922 11.5962 13.5566 11.4935 13.574C11.3752 13.594 11.211 13.4993 10.8826 13.3099L8.26699 11.8013C8.16991 11.7453 8.12137 11.7173 8.06977 11.7064C8.02411 11.6967 7.97693 11.6967 7.93128 11.7064C7.87968 11.7173 7.83114 11.7453 7.73406 11.8013L5.1184 13.3099C4.79001 13.4993 4.62582 13.594 4.50755 13.574C4.40481 13.5566 4.31611 13.4922 4.26782 13.3998C4.21222 13.2935 4.25155 13.1081 4.33021 12.7373L4.95672 9.78345C4.97997 9.67382 4.9916 9.619 4.98608 9.56654C4.98119 9.52012 4.96661 9.47525 4.94328 9.43482C4.91691 9.38914 4.87529 9.35162 4.79204 9.2766L2.54896 7.25515C2.26735 7.00137 2.12654 6.87448 2.10904 6.7558C2.09384 6.65271 2.12771 6.54845 2.20061 6.47399C2.28452 6.38826 2.47302 6.36837 2.85002 6.32858L5.85288 6.01164C5.96433 5.99988 6.02006 5.994 6.06825 5.97254C6.11088 5.95354 6.14905 5.92581 6.18029 5.89113C6.21559 5.85194 6.23841 5.80076 6.28403 5.6984L7.51339 2.94044Z" fill="#34C759"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="branch-title">Bon</div>
+                </div>
+                <div class="branch-location">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99935 17.5C12.916 14.5 15.8327 11.8137 15.8327 8.5C15.8327 5.18629 13.221 2.5 9.99935 2.5C6.77769 2.5 4.16602 5.18629 4.16602 8.5C4.16602 11.8137 7.08268 14.5 9.99935 17.5Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.99935 10.8333C11.3801 10.8333 12.4993 9.71404 12.4993 8.33333C12.4993 6.95262 11.3801 5.83333 9.99935 5.83333C8.61864 5.83333 7.49935 6.95262 7.49935 8.33333C7.49935 9.71404 8.61864 10.8333 9.99935 10.8333Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    Yusuf Hos Hojib, Tashkent, Uzbekistan
+                </div>
+            </div>
+
+            <div class="branch-card">
+                <div class="branch-main">
+                    <img class="bg" src="http://localhost:3845/assets/b4c507becbd1f600773efb150710c2fc5fc1e55e.png" alt="">
+                    <div class="branch-overlay"></div>
+                    <div class="branch-fav">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-rating">
+                        4.6
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.51339 2.94044C7.66774 2.59419 7.74491 2.42106 7.85236 2.36774C7.94571 2.32143 8.05534 2.32143 8.14868 2.36774C8.25614 2.42106 8.33331 2.59419 8.48765 2.94044L9.71701 5.6984C9.76264 5.80076 9.78545 5.85194 9.82076 5.89113C9.85199 5.92581 9.89016 5.95354 9.9328 5.97254C9.98099 5.994 10.0367 5.99988 10.1482 6.01164L13.151 6.32858C13.528 6.36837 13.7165 6.38826 13.8004 6.47399C13.8733 6.54845 13.9072 6.65271 13.892 6.7558C13.8745 6.87448 13.7337 7.00137 13.4521 7.25516L11.209 9.2766C11.1258 9.35162 11.0841 9.38914 11.0578 9.43482C11.0344 9.47525 11.0199 9.52012 11.015 9.56654C11.0094 9.619 11.0211 9.67382 11.0443 9.78345L11.6708 12.7373C11.7495 13.1081 11.7888 13.2935 11.7332 13.3998C11.6849 13.4922 11.5962 13.5566 11.4935 13.574C11.3752 13.594 11.211 13.4993 10.8826 13.3099L8.26699 11.8013C8.16991 11.7453 8.12137 11.7173 8.06977 11.7064C8.02411 11.6967 7.97693 11.6967 7.93128 11.7064C7.87968 11.7173 7.83114 11.7453 7.73406 11.8013L5.1184 13.3099C4.79001 13.4993 4.62582 13.594 4.50755 13.574C4.40481 13.5566 4.31611 13.4922 4.26782 13.3998C4.21222 13.2935 4.25155 13.1081 4.33021 12.7373L4.95672 9.78345C4.97997 9.67382 4.9916 9.619 4.98608 9.56654C4.98119 9.52012 4.96661 9.47525 4.94328 9.43482C4.91691 9.38914 4.87529 9.35162 4.79204 9.2766L2.54896 7.25515C2.26735 7.00137 2.12654 6.87448 2.10904 6.7558C2.09384 6.65271 2.12771 6.54845 2.20061 6.47399C2.28452 6.38826 2.47302 6.36837 2.85002 6.32858L5.85288 6.01164C5.96433 5.99988 6.02006 5.994 6.06825 5.97254C6.11088 5.95354 6.14905 5.92581 6.18029 5.89113C6.21559 5.85194 6.23841 5.80076 6.28403 5.6984L7.51339 2.94044Z" fill="#34C759"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="branch-title">Bon</div>
+                </div>
+                <div class="branch-location">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99935 17.5C12.916 14.5 15.8327 11.8137 15.8327 8.5C15.8327 5.18629 13.221 2.5 9.99935 2.5C6.77769 2.5 4.16602 5.18629 4.16602 8.5C4.16602 11.8137 7.08268 14.5 9.99935 17.5Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.99935 10.8333C11.3801 10.8333 12.4993 9.71404 12.4993 8.33333C12.4993 6.95262 11.3801 5.83333 9.99935 5.83333C8.61864 5.83333 7.49935 6.95262 7.49935 8.33333C7.49935 9.71404 8.61864 10.8333 9.99935 10.8333Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    Uzbekistan hotel, Tashkent, Uzbekistan
+                </div>
+            </div>
+
+            <div class="branch-card">
+                <div class="branch-main">
+                    <img class="bg" src="http://localhost:3845/assets/f5ec6cddc5f785c07950be61238547b4c8b68c74.png" alt="">
+                    <div class="branch-overlay"></div>
+                    <div class="branch-fav">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-rating">
+                        5.0
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.51339 2.94044C7.66774 2.59419 7.74491 2.42106 7.85236 2.36774C7.94571 2.32143 8.05534 2.32143 8.14868 2.36774C8.25614 2.42106 8.33331 2.59419 8.48765 2.94044L9.71701 5.6984C9.76264 5.80076 9.78545 5.85194 9.82076 5.89113C9.85199 5.92581 9.89016 5.95354 9.9328 5.97254C9.98099 5.994 10.0367 5.99988 10.1482 6.01164L13.151 6.32858C13.528 6.36837 13.7165 6.38826 13.8004 6.47399C13.8733 6.54845 13.9072 6.65271 13.892 6.7558C13.8745 6.87448 13.7337 7.00137 13.4521 7.25516L11.209 9.2766C11.1258 9.35162 11.0841 9.38914 11.0578 9.43482C11.0344 9.47525 11.0199 9.52012 11.015 9.56654C11.0094 9.619 11.0211 9.67382 11.0443 9.78345L11.6708 12.7373C11.7495 13.1081 11.7888 13.2935 11.7332 13.3998C11.6849 13.4922 11.5962 13.5566 11.4935 13.574C11.3752 13.594 11.211 13.4993 10.8826 13.3099L8.26699 11.8013C8.16991 11.7453 8.12137 11.7173 8.06977 11.7064C8.02411 11.6967 7.97693 11.6967 7.93128 11.7064C7.87968 11.7173 7.83114 11.7453 7.73406 11.8013L5.1184 13.3099C4.79001 13.4993 4.62582 13.594 4.50755 13.574C4.40481 13.5566 4.31611 13.4922 4.26782 13.3998C4.21222 13.2935 4.25155 13.1081 4.33021 12.7373L4.95672 9.78345C4.97997 9.67382 4.9916 9.619 4.98608 9.56654C4.98119 9.52012 4.96661 9.47525 4.94328 9.43482C4.91691 9.38914 4.87529 9.35162 4.79204 9.2766L2.54896 7.25515C2.26735 7.00137 2.12654 6.87448 2.10904 6.7558C2.09384 6.65271 2.12771 6.54845 2.20061 6.47399C2.28452 6.38826 2.47302 6.36837 2.85002 6.32858L5.85288 6.01164C5.96433 5.99988 6.02006 5.994 6.06825 5.97254C6.11088 5.95354 6.14905 5.92581 6.18029 5.89113C6.21559 5.85194 6.23841 5.80076 6.28403 5.6984L7.51339 2.94044Z" fill="#34C759"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="branch-title">Bon</div>
+                </div>
+                <div class="branch-location">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99935 17.5C12.916 14.5 15.8327 11.8137 15.8327 8.5C15.8327 5.18629 13.221 2.5 9.99935 2.5C6.77769 2.5 4.16602 5.18629 4.16602 8.5C4.16602 11.8137 7.08268 14.5 9.99935 17.5Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.99935 10.8333C11.3801 10.8333 12.4993 9.71404 12.4993 8.33333C12.4993 6.95262 11.3801 5.83333 9.99935 5.83333C8.61864 5.83333 7.49935 6.95262 7.49935 8.33333C7.49935 9.71404 8.61864 10.8333 9.99935 10.8333Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    Istiqbol, Tashkent, Uzbekistan
+                </div>
+            </div>
+
+            <div class="branch-card">
+                <div class="branch-main">
+                    <img class="bg" src="http://localhost:3845/assets/74a2e2cbbbe3dc304cce6af4b19898b6ab77fbb7.png" alt="">
+                    <div class="branch-overlay"></div>
+                    <div class="branch-fav">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-rating">
+                        4.9
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.51339 2.94044C7.66774 2.59419 7.74491 2.42106 7.85236 2.36774C7.94571 2.32143 8.05534 2.32143 8.14868 2.36774C8.25614 2.42106 8.33331 2.59419 8.48765 2.94044L9.71701 5.6984C9.76264 5.80076 9.78545 5.85194 9.82076 5.89113C9.85199 5.92581 9.89016 5.95354 9.9328 5.97254C9.98099 5.994 10.0367 5.99988 10.1482 6.01164L13.151 6.32858C13.528 6.36837 13.7165 6.38826 13.8004 6.47399C13.8733 6.54845 13.9072 6.65271 13.892 6.7558C13.8745 6.87448 13.7337 7.00137 13.4521 7.25516L11.209 9.2766C11.1258 9.35162 11.0841 9.38914 11.0578 9.43482C11.0344 9.47525 11.0199 9.52012 11.015 9.56654C11.0094 9.619 11.0211 9.67382 11.0443 9.78345L11.6708 12.7373C11.7495 13.1081 11.7888 13.2935 11.7332 13.3998C11.6849 13.4922 11.5962 13.5566 11.4935 13.574C11.3752 13.594 11.211 13.4993 10.8826 13.3099L8.26699 11.8013C8.16991 11.7453 8.12137 11.7173 8.06977 11.7064C8.02411 11.6967 7.97693 11.6967 7.93128 11.7064C7.87968 11.7173 7.83114 11.7453 7.73406 11.8013L5.1184 13.3099C4.79001 13.4993 4.62582 13.594 4.50755 13.574C4.40481 13.5566 4.31611 13.4922 4.26782 13.3998C4.21222 13.2935 4.25155 13.1081 4.33021 12.7373L4.95672 9.78345C4.97997 9.67382 4.9916 9.619 4.98608 9.56654C4.98119 9.52012 4.96661 9.47525 4.94328 9.43482C4.91691 9.38914 4.87529 9.35162 4.79204 9.2766L2.54896 7.25515C2.26735 7.00137 2.12654 6.87448 2.10904 6.7558C2.09384 6.65271 2.12771 6.54845 2.20061 6.47399C2.28452 6.38826 2.47302 6.36837 2.85002 6.32858L5.85288 6.01164C5.96433 5.99988 6.02006 5.994 6.06825 5.97254C6.11088 5.95354 6.14905 5.92581 6.18029 5.89113C6.21559 5.85194 6.23841 5.80076 6.28403 5.6984L7.51339 2.94044Z" fill="#34C759"/>
+                        </svg>                            
+                    </div>
+                    <div class="branch-logo">
+                        <img src="http://localhost:3845/assets/1eb270953fc9c384ca29835ba619b0fd2ca1aa6f.png" alt="">
+                    </div>
+                    <div class="branch-title">Bon</div>
+                </div>
+                <div class="branch-location">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99935 17.5C12.916 14.5 15.8327 11.8137 15.8327 8.5C15.8327 5.18629 13.221 2.5 9.99935 2.5C6.77769 2.5 4.16602 5.18629 4.16602 8.5C4.16602 11.8137 7.08268 14.5 9.99935 17.5Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.99935 10.8333C11.3801 10.8333 12.4993 9.71404 12.4993 8.33333C12.4993 6.95262 11.3801 5.83333 9.99935 5.83333C8.61864 5.83333 7.49935 6.95262 7.49935 8.33333C7.49935 9.71404 8.61864 10.8333 9.99935 10.8333Z" stroke="#F75908" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    Amir Temur, Tashkent, Uzbekistan
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tabs = document.querySelectorAll(".tab");
+        const panels = document.querySelectorAll(".tab-panel");
+
+        const setActiveTab = (tab) => {
+            const target = tab.getAttribute("data-tab");
+            tabs.forEach((btn) => btn.classList.toggle("active", btn === tab));
+            panels.forEach((panel) => {
+                panel.classList.toggle("active", panel.getAttribute("data-panel") === target);
+            });
+        };
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => setActiveTab(tab));
+        });
+    </script>
+</body>
+</html>
